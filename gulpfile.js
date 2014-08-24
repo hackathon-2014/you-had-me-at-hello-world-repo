@@ -22,7 +22,7 @@ gulp.task('styles', function () {
 gulp.task('html', ['styles'], function () {
 
   return gulp.src('app/*.html')
-    .pipe($.useref.assets({searchPath: '{.tmp,app}'}))
+    //.pipe($.useref.assets({searchPath: '{.tmp,app}'}))
     .pipe($.if('*.css', $.csso()))
     .pipe($.useref.restore())
     .pipe($.useref())
@@ -101,6 +101,7 @@ gulp.task('watch', ['connect', 'serve'], function () {
   gulp.watch('bower.json', ['wiredep']);
 });
 
+//gulp.task('build', ['html', 'images', 'extras'], function () {
 gulp.task('build', ['html', 'images', 'extras'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
